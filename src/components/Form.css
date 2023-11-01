@@ -44,3 +44,14 @@ button {
 .checkbox input {
     width: 18px;
 }
+
+.Form-dealer {
+    text-align: center;
+}
+
+.Form-dealer .container {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
