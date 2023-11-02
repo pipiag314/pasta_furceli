@@ -1,0 +1,19 @@
+.GameTable {
+  /* GameTable styles */
+}
+
+.GameTable table {
+  width: 100%;
+}
+
+td,
+th {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.dealer {
+  background-color: yellow;
+}

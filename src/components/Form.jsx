@@ -119,8 +119,8 @@ const Form = ({
             (player) =>
               player.name && (
                 <span key={player.id}>
-                  <input type="radio" onChange={(e) => handleChangeForDealerChoosing(e)} name="dealer" value={player.id} />
-                  <label>{player.name}</label>
+                  <input type="radio" id={player.id} onChange={(e) => handleChangeForDealerChoosing(e)} name="dealer" value={player.id} />
+                  <label htmlFor={player.id}>{player.name}</label>
                 </span>
               )
           )}
