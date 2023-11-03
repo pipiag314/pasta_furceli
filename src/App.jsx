@@ -8,18 +8,22 @@ function App() {
     player1: {
       name: "",
       id: 1,
+      score: 0,
     },
     player2: {
       name: "",
       id: 2,
+      score: 0,
     },
     player3: {
       name: "",
       id: 3,
+      score: 0,
     },
     player4: {
       name: "",
       id: 4,
+      score: 0,
     },
   });
 
@@ -27,7 +31,7 @@ function App() {
     gameType: "ცხრიანები",
     khishti: 500,
     isLastScoreDeletable: true,
-    dealerId: null,
+    dealerId: 4,
   });
 
   const [isFormFilled, setIsFormFilled] = useState(false);
