@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import "./GameTable.css"
+import Joystick from './Joystick'
 
 const GameTable = ({ players, settings }) => {
   const [playersArray, setPlayersArray] = useState(Object.values(players))
-  const [gameLogs, setGameLog] = useState([])
+  const [gameLogs, setGameLogs] = useState([])
+  const [round, setRound] = useState(1)
 
 
-  const gameLog = {
+  const [gameLog, setGameLog] = useState({
     player1: {
       id: playersArray[0].id,
       wanna_collect: null,
@@ -31,14 +33,18 @@ const GameTable = ({ players, settings }) => {
       collected: null,
       point: 0,
     },
-  };
+  });
 
   useEffect(() => {
-    setGameLog(prev => ([
-      ...prev,
-      gameLog,
-    ]))
-  }, [])
+    if(gameLog.player1.wanna_collect) {
+      setGameLogs(prev => ([
+        ...prev,
+        gameLog,
+      ]))
+    }
+  }, [round])
+
+  console.log(playersArray)
 
   const placeDealerLast = (dealerId) => {
     let dealer = {};
@@ -58,25 +64,35 @@ const GameTable = ({ players, settings }) => {
 
   
   return (
-    <div className='GameTable'>
-      <table>
-          <tr>
-              {playersArray.map(player => {
-                return (
-                  <th key={player.id} className={player.id == settings.dealerId && "dealer"}>{player.name}</th>
-                )
-              })}
-          </tr>
-          {gameLogs.map(logEntries => (
+    <>
+      <div className='GameTable'>
+        <table>
             <tr>
-              {Object.values(logEntries).map(playerN => (
-                <td key={playerN.id}>{playerN.wanna_collect} - <span>{playerN.point}</span></td>
-              ))}
+                {playersArray.map(player => {
+                  return (
+                    <th key={player.id} className={player.id == settings.dealerId ? "dealer" : undefined}>{player.name}</th>
+                  )
+                })}
             </tr>
-          ))}
-      </table>
-    </div>
+            {gameLogs.map(logEntries => (
+              <tr>
+                {Object.values(logEntries).map(playerN => (
+                  <td key={playerN.id}>{playerN.wanna_collect} - <span>{playerN.point}</span></td>
+                ))}
+              </tr>
+            ))}
+            {
+              <tr>
+              {Object.values(gameLog).map(playerN => (
+                <td>{playerN.wanna_collect} - <span>{playerN.point}</span></td>
+              ))}
+          </tr>
+            }
+        </table>
+      </div>
+      <Joystick setGameLog={setGameLog} setGameLogs={setGameLogs} gameLog={gameLog} playersArray={playersArray} />
+    </>
   )
 }
 
-export default GameTable
+export default GameTable;

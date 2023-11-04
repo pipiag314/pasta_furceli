@@ -1,0 +1,27 @@
+.Joystick {
+    display: flex;
+    background-color: aquamarine;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 50px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.Joystick button {
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 1.5rem;
+}
+
+.Joystick .grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 3px
+}
+
+.span-3 {
+    grid-column: span 3;
+}
