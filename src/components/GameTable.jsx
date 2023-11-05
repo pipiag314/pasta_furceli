@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./GameTable.css";
 import Joystick from "./Joystick";
 
-const GameTable = ({ players, settings }) => {
+const GameTable = ({ players, settings, setSettings }) => {
   const [playersArray, setPlayersArray] = useState(Object.values(players));
   const [gameLogs, setGameLogs] = useState([]);
   const [round, setRound] = useState(1);
@@ -34,11 +34,7 @@ const GameTable = ({ players, settings }) => {
     },
   });
 
-  useEffect(() => {
-    if (gameLog.player1.wanna_collect) {
-      setGameLogs((prev) => [...prev, gameLog]);
-    }
-  }, [round]);
+
 
   const placeDealerLast = (dealerId) => {
     let dealer = {};
@@ -73,11 +69,11 @@ const GameTable = ({ players, settings }) => {
               );
             })}
           </tr>
-          {gameLogs.map((logEntries) => (
-            <tr>
-              {Object.values(logEntries).map((playerN) => (
-                <td key={playerN.id}>
-                  {playerN.wanna_collect} - <span>{playerN.point}</span>
+          {gameLogs.map((logEntries, index) => (
+            <tr key={index}>
+              {Object.values(logEntries).map((playerN, i) => (
+                <td key={i}>
+                  {playerN.wanna_collect === 0 ? "პასი" : playerN.wanna_collect} - <span>{playerN.point}</span>
                 </td>
               ))}
             </tr>
@@ -86,7 +82,7 @@ const GameTable = ({ players, settings }) => {
             <tr>
               {Object.values(gameLog).map((playerN) => (
                 <td>
-                  {playerN.wanna_collect} - <span>{playerN.point}</span>
+                  {playerN.wanna_collect === 0 ? "პასი" : playerN.wanna_collect} - <span>{playerN.point}</span>
                 </td>
               ))}
             </tr>
@@ -95,10 +91,14 @@ const GameTable = ({ players, settings }) => {
       </div>
       <Joystick
         setGameLog={setGameLog}
-        setGameLogs={setGameLogs}
         gameLog={gameLog}
+        setGameLogs={setGameLogs}
+        gameLogs={gameLogs}
         playersArray={playersArray}
         settings={settings}
+        setRound={setRound}
+        round={round}
+        setSettings={setSettings}
       />
     </>
   );

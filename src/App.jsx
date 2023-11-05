@@ -47,7 +47,7 @@ function App() {
           setPlayers={setPlayers}
         />
       ) : (
-        <GameTable players={players} settings={settings} />
+        <GameTable players={players} settings={settings} setSettings={setSettings} />
       )}
     </div>
   );
