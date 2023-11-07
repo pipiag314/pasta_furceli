@@ -4,28 +4,36 @@ import { useState } from "react";
 import GameTable from "./components/GameTable";
 
 function App() {
-  const [players, setPlayers] = useState({
-    player1: {
+  const [players, setPlayers] = useState([
+    {
       name: "",
       id: 1,
       score: 0,
+      wanna_collect: [],
+      collected: [],
     },
-    player2: {
+    {
       name: "",
       id: 2,
       score: 0,
+      wanna_collect: [],
+      collected: [],
     },
-    player3: {
+    {
       name: "",
       id: 3,
       score: 0,
+      wanna_collect: [],
+      collected: [],
     },
-    player4: {
+    {
       name: "",
       id: 4,
       score: 0,
+      wanna_collect: [],
+      collected: [],
     },
-  });
+  ]);
 
   const [settings, setSettings] = useState({
     gameType: "ცხრიანები",
@@ -47,7 +55,12 @@ function App() {
           setPlayers={setPlayers}
         />
       ) : (
-        <GameTable players={players} settings={settings} setSettings={setSettings} />
+        <GameTable
+          players={players}
+          setPlayers={setPlayers}
+          settings={settings}
+          setSettings={setSettings}
+        />
       )}
     </div>
   );

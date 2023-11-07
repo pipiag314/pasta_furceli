@@ -1,22 +1,33 @@
 
 
-.GameTable table {
+.GameTable .table {
   width: 100%;
-}
-
-td,
-th {
-  padding: 8px;
-  text-align: left;
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-.dealer {
-  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
-.activePlace {
-  background-color: lightgreen;
+.table .head {
+  display: flex;
+  width: fit-content;
+  gap: 20px;
+  justify-content: center;
+  border-bottom: 2px solid black;
+  margin-bottom: 5px;
+}
+
+.table .head div {
+  width: 100px;
+}
+
+.table .body {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.body div {
+  width: 100px;
 }

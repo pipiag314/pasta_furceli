@@ -13,34 +13,18 @@ const Form = ({
     setIsFormFilled(true);
   };
 
-  const handleChange = (event, player) => {
-    setPlayers((prev) => {
-      return {
-        ...prev,
-        [player]: {
-          ...prev[player],
-          name: event.target.value,
-        },
-      };
-    });
+  const handleChangeForNames = (event, n) => {
+    const newPlayers = [...players]
+    newPlayers[n].name = event.target.value;
+    setPlayers(newPlayers);
   };
 
 
   const handleChangeForDealerChoosing = (event) => {
-    const dealer = Object.values(players).filter(player => +event.target.value === player.id)[0];
-    const dealerId = Object.values(players).filter(player => +event.target.value === player.id)[0].id;
+    const dealerId = players.filter(player => +event.target.value === player.id)[0].id;
     setSettings(prev => ({
       ...prev,
       dealerId: dealerId,
-    }))
-
-    setPlayers(prev => ({
-      ...prev,
-      [`player${dealerId}`]: {
-        ...prev[`player${dealerId}`],
-        isDealer: true,
-      },
-
     }))
   }
 
@@ -53,22 +37,22 @@ const Form = ({
         <input
           required
           type="text"
-          onChange={(event) => handleChange(event, "player1")}
+          onChange={(event) => handleChangeForNames(event, 0)}
           placeholder="მოთამაშე I"></input>
         <input
           required
           type="text"
-          onChange={(event) => handleChange(event, "player2")}
+          onChange={(event) => handleChangeForNames(event, 1)}
           placeholder="მოთამაშე II"></input>
         <input
           required
           type="text"
-          onChange={(event) => handleChange(event, "player3")}
+          onChange={(event) => handleChangeForNames(event, 2)}
           placeholder="მოთამაშე III"></input>
         <input
           required
           type="text"
-          onChange={(event) => handleChange(event, "player4")}
+          onChange={(event) => handleChangeForNames(event, 3)}
           placeholder="მოთამაშე IV"></input>
       </div>
       <div className="Form-game-type">
